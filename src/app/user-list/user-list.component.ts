@@ -14,11 +14,13 @@ export class UserListComponent implements OnInit {
    * @var users {User[]} - Input tulajdonság
    * @default []
    */
-  
+  @Input() users:User[]= []
   @Output() delUser: EventEmitter<User> = new EventEmitter();
   currentUser: User = new User();
 
-  constructor() { }
+  constructor() {
+    
+   }
 
   ngOnInit(): void {
   }
@@ -31,7 +33,9 @@ export class UserListComponent implements OnInit {
    * @param user {User} - egy felhasználó
    * @returns {void}
    */
-  
+   onSelectUser(user:User){
+    this.currentUser=user
+   }
 
   /**
    * FELADAT!
@@ -43,6 +47,9 @@ export class UserListComponent implements OnInit {
    * @param user {User} - egy felhasználó
    * @returns {void}
    */
-  
+   onDeleteUser(user:User){
+    this.delUser.emit(user)
+    this.currentUser= new User
+   }
 
 }
